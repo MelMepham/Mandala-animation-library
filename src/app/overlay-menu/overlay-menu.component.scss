@@ -14,7 +14,9 @@ button {
   margin: 10px 5px;
   border: 0;
   background-color: unset;
+  cursor: pointer;
 }
-  button:disabled {
-    --btn-primary-700: #b2fcff;
-  }
+button:disabled {
+  opacity: .2;
+  cursor: not-allowed;
+}

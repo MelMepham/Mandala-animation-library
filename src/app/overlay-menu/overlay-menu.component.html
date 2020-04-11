@@ -2,11 +2,13 @@
     class="overlay-menu__hamburger-button">
     <div>
         <button
-            [disabled]="hasMoreLeft">
+            [disabled]="!backUrl"
+            (click)="clickBack()">
             <arrow-left></arrow-left>
         </button>
         <button
-            [disabled]="hasMoreRight">
+            [disabled]="!nextUrl"
+            (click)="clickForward()">
             <arrow-right></arrow-right>
         </button>
     </div>
