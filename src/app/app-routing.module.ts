@@ -9,7 +9,8 @@ export const routes: Routes = [
     },
     {
         path: 'one',
-        component: MandalaOneComponent
+        component: MandalaOneComponent,
+        data: [true]
     }
 ];
 

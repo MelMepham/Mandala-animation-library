@@ -27,9 +27,9 @@ export class OverlayMenuComponent implements OnInit {
 
   }
   public ngOnInit(): void {
+    const fullRouteList = routes;
 
-    this.updatedRoutes = routes.slice(1);
-
+    this.updatedRoutes = fullRouteList.filter(routes => routes.data && routes.data[0] === true)
     this.isAnimated = this._animationService.isAnimated;
 
     this._router.events.pipe(
