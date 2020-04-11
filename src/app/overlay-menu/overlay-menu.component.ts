@@ -18,7 +18,7 @@ export class OverlayMenuComponent implements OnInit {
   public nextUrl: string;
   public backUrl: string;
 
-  public routes: Array<Route>
+  public updatedRoutes: Array<Route>
 
   constructor (
       private _animationService: AnimationService,
@@ -28,8 +28,7 @@ export class OverlayMenuComponent implements OnInit {
   }
   public ngOnInit(): void {
 
-    routes.shift();
-    this.routes = routes;
+    this.updatedRoutes = routes.slice(1);
 
     this.isAnimated = this._animationService.isAnimated;
 
@@ -45,15 +44,15 @@ export class OverlayMenuComponent implements OnInit {
 
   public setUpRouteButtons(route: NavigationEnd): void {
       this.currentUrl = route.url.replace('/', '');
-      const index = this.routes.findIndex(el => el.path === this.currentUrl)
-      this.nextUrl = null;
-      this.backUrl = null;
+      const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl)
+      this.nextUrl = undefined;
+      this.backUrl = undefined;
 
-      if(this.routes[index + 1]) {
-          this.nextUrl = this.routes[(index + 1)].path;
+      if(this.updatedRoutes[index + 1]) {
+          this.nextUrl = this.updatedRoutes[(index + 1)].path;
       }
-      if(this.routes[index - 1]) {
-          this.backUrl = this.routes[(index - 1)].path;
+      if(this.updatedRoutes[index - 1]) {
+          this.backUrl = this.updatedRoutes[(index - 1)].path;
       }
   }
 
