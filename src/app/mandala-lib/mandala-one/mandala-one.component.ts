@@ -3,12 +3,14 @@ import {
   OnInit,
   OnDestroy,
   Input,
-  OnChanges,
   SimpleChanges
 } from '@angular/core';
 import * as sketch from 'p5';
+import { takeUntil } from 'rxjs/operators';
 
 import { ColorsEnum } from "../styles/colors.enum";
+import { AnimationService } from 'src/services/animation.service';
+import {Subject, Observable} from 'rxjs';
 
 
 @Component({
@@ -16,32 +18,43 @@ import { ColorsEnum } from "../styles/colors.enum";
   templateUrl: './mandala-one.component.html',
   styleUrls: ['./mandala-one.component.scss']
 })
-export class MandalaOneComponent implements OnInit, OnDestroy, OnChanges {
+export class MandalaOneComponent implements OnInit, OnDestroy {
 
   private _sketch: any;
   private _p: any;
   private _s: any;
   private _h: any;
 
-  @Input() isAnimated = true;
+  private destroyed$ = new Subject<void>();
+  constructor(
+      private _animationService: AnimationService
+  ) {
+
+  }
+
+  public isAnimated: boolean;
 
   @Input() primaryColor = "green";
   @Input() secondaryColor = "blue";
   @Input() highlightColor = "pink";
 
   public ngOnInit(): void {
+    this._animationService.isAnimatedObservable$.pipe(
+        takeUntil(this.destroyed$)
+  )
+      .subscribe(
+        isAnimated => {
+          this.isAnimated = isAnimated
+          this.checkIsAnimated(isAnimated)
+        }
+    );
     this._getColors(ColorsEnum, this.primaryColor, this.secondaryColor, this.highlightColor);
     this.createCanvas()
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.isAnimated) {
-      this.checkIsAnimated(this.isAnimated);
-    }
-  }
-
   public ngOnDestroy(): void {
     this.destroyCanvas();
+    this.destroyed$.next();
   }
 
   private createCanvas(): void {

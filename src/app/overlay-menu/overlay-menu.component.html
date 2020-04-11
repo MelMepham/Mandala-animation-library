@@ -1,0 +1,28 @@
+<div
+    class="overlay-menu__hamburger-button">
+    <div>
+        <button
+            [disabled]="hasMoreLeft">
+            <arrow-left></arrow-left>
+        </button>
+        <button
+            [disabled]="hasMoreRight">
+            <arrow-right></arrow-right>
+        </button>
+    </div>
+
+    <div>
+        <button
+            [disabled]="!isAnimated"
+            (click)="changeAnimationStatus()">
+            <pause></pause>
+        </button>
+        <button
+            [disabled]="isAnimated"
+            (click)="changeAnimationStatus()">
+            <play></play>
+        </button>
+    </div>
+
+</div>
+

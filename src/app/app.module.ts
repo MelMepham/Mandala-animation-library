@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MandalaOneModule } from "./mandala-lib/mandala-one/mandala-one.module";
+import { OverlayMenuModule } from "./overlay-menu/overlay-menu.module";
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { MandalaOneModule } from "./mandala-lib/mandala-one/mandala-one.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MandalaOneModule
+    OverlayMenuModule,
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,20 @@
+overlay-menu:host {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  width: auto;
+  height: 100%;
+  padding: 10px;
+}
+
+button {
+  height: 40px;
+  width: 40px;
+  margin: 10px 5px;
+  border: 0;
+  background-color: unset;
+}
+  button:disabled {
+    --btn-primary-700: #b2fcff;
+  }
