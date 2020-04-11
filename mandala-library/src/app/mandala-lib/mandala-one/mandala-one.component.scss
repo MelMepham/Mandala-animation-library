@@ -1,0 +1,31 @@
+@import url('../styles/env.scss');
+
+mandala-one:host {
+  display: block;
+}
+
+.mandala-one__container {
+  width: 60%;
+  height: 60%;
+  margin: 48px auto;
+
+  @media only screen and (max-width: 1000px) {
+    width: 70%;
+    height: 70%;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.mandala-one__animation-container {
+  ::ng-deep .p5Canvas {
+    border-radius: 100%;
+    width: 90% !important;
+    height: 90% !important;
+    display: block;
+    margin: auto;
+  }
+}
