@@ -1,70 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AnimationService } from 'src/services/animation.service';
 import { routes } from '../app-routing.module';
 import { Route, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 
 @Component({
-  selector: 'overlay-menu',
+  selector: 'app-overlay-menu',
   templateUrl: './overlay-menu.component.html',
   styleUrls: ['./overlay-menu.component.scss']
 })
-export class OverlayMenuComponent implements OnInit {
+export class OverlayMenuComponent implements OnInit, OnDestroy {
 
-  public isAnimated: boolean;
-  
-  public currentUrl: string;
-  public nextUrl: string;
-  public backUrl: string;
+	private destroyed$ = new Subject<any>();
+    public isAnimated: boolean;
 
-  public updatedRoutes: Array<Route>
+    public currentUrl: string;
+    public nextUrl: string;
+    public backUrl: string;
 
-  constructor (
-      private _animationService: AnimationService,
-      private _router: Router
-  ) {
+    public updatedRoutes: Array<Route>;
 
-  }
-  public ngOnInit(): void {
-    this.isAnimated = this._animationService.isAnimated;
+	constructor(
+		private animationService: AnimationService,
+		private router: Router
+	) {
 
-    this._router.events.pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe(route => {
-    	this.updateRouteButtons(route)})
-  }
+    }
+    public ngOnInit(): void {
+	    this.isAnimated = this.animationService.isAnimated;
 
-  public changeAnimationStatus(): void {
-    this.isAnimated = !this.isAnimated;
-    this._animationService.updateGlobalAnimationState();
-  }
+	    this.router.events.pipe(
+	        takeUntil(this.destroyed$),
+	        filter((e): e is NavigationEnd => e instanceof NavigationEnd)
+	    ).subscribe(route => this.updateRouteButtons(route));
+    }
 
-  public updateRouteButtons(route: NavigationEnd): void {
-	  this.nextUrl = undefined;
-	  this.backUrl = undefined;
+    public ngOnDestroy(): void {
+    	this.destroyed$.next();
+    }
 
-	  const fullRouteList = routes;
-      this.currentUrl = route.url.replace('/', '');
+	public changeAnimationStatus(): void {
+	    this.isAnimated = !this.isAnimated;
+	    this.animationService.updateGlobalAnimationState();
+    }
 
-	  this.updatedRoutes = fullRouteList.filter(routes => routes.data && routes.data.type === 'mandala');
-      const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl)
+    public updateRouteButtons(route: NavigationEnd): void {
+	    this.nextUrl = undefined;
+	    this.backUrl = undefined;
+        const fullRouteList = routes;
+        this.currentUrl = route.url.replace('/', '');
 
-      if(this.updatedRoutes[index + 1]) {
-          this.nextUrl = this.updatedRoutes[(index + 1)].path;
-      }
-      if(this.updatedRoutes[index - 1]) {
-          this.backUrl = this.updatedRoutes[(index - 1)].path;
-      }
-  }
+	    this.updatedRoutes = fullRouteList.filter(currentRoute => currentRoute.data && currentRoute.data.type === 'mandala');
+        const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl);
 
-  public clickForward() {
-    this._router.navigateByUrl(this.nextUrl);
-  }
-  
-  public clickBack() {
-    this._router.navigateByUrl(this.backUrl);
+        if (this.updatedRoutes[index + 1]) {
+            this.nextUrl = this.updatedRoutes[(index + 1)].path;
+        }
+        if (this.updatedRoutes[index - 1]) {
+            this.backUrl = this.updatedRoutes[(index - 1)].path;
+        }
+    }
 
-  }
+    public clickForward() {
+	    this.router.navigateByUrl(this.nextUrl);
+    }
+
+    public clickBack() {
+	    this.router.navigateByUrl(this.backUrl);
+    }
 
 }
