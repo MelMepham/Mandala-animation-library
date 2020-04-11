@@ -12,6 +12,12 @@ mandala-one:host {
     height: 70%;
   }
   @media only screen and (max-width: 600px) {
+    margin-top: 20%;
+    width: 100%;
+    height: 100%;
+  }
+  @media only screen and (max-width: 420px) {
+    margin-top: 40%;
     width: 100%;
     height: 100%;
   }
