@@ -3,7 +3,7 @@ import { AnimationService } from 'src/services/animation.service';
 import { routes } from '../app-routing.module';
 import { Route, Router, NavigationEnd } from '@angular/router';
 import { filter, takeUntil } from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -49,11 +49,13 @@ export class OverlayMenuComponent implements OnInit, OnDestroy {
     public updateRouteButtons(route: NavigationEnd): void {
 	    this.nextUrl = undefined;
 	    this.backUrl = undefined;
-        const fullRouteList = routes;
-        this.currentUrl = route.url.replace('/', '');
+
+	    const fullRouteList = routes;
+        this.currentUrl = route.urlAfterRedirects.replace('/', '');
 
 	    this.updatedRoutes = fullRouteList.filter(currentRoute => currentRoute.data && currentRoute.data.type === 'mandala');
-        const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl);
+
+	    const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl);
 
         if (this.updatedRoutes[index + 1]) {
             this.nextUrl = this.updatedRoutes[(index + 1)].path;
