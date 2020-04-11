@@ -1,22 +1,25 @@
 overlay-menu:host {
-  position: absolute;
   display: block;
-  top: 0;
-  right: 0;
-  width: auto;
-  height: 100%;
-  padding: 10px;
 }
 
-button {
-  height: 40px;
-  width: 40px;
-  margin: 10px 5px;
-  border: 0;
-  background-color: unset;
-  cursor: pointer;
+.overlay-menu__button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
 }
-button:disabled {
-  opacity: .2;
-  cursor: not-allowed;
+
+.overlay-menu__button {
+    height: 40px;
+    width: 40px;
+    margin: 10px 5px;
+    border: 0;
+    background-color: unset;
+    cursor: pointer;
+}
+
+.overlay-menu__button:disabled {
+    opacity: .2;
+    cursor: not-allowed;
 }

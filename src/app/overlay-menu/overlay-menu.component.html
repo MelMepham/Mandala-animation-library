@@ -1,30 +1,28 @@
 <div
-    class="overlay-menu__hamburger-button">
-    <div>
-        <button
-            [disabled]="!backUrl"
-            (click)="clickBack()">
-            <arrow-left></arrow-left>
-        </button>
-        <button
-            [disabled]="!nextUrl"
-            (click)="clickForward()">
-            <arrow-right></arrow-right>
-        </button>
-    </div>
-
-    <div>
-        <button
-            [disabled]="!isAnimated"
-            (click)="changeAnimationStatus()">
-            <pause></pause>
-        </button>
-        <button
-            [disabled]="isAnimated"
-            (click)="changeAnimationStatus()">
-            <play></play>
-        </button>
-    </div>
-
+    class="overlay-menu__button-container">
+    <button
+        class="overlay-menu__button"
+        [disabled]="!backUrl"
+        (click)="clickBack()">
+        <arrow-left></arrow-left>
+    </button>
+    <button
+        class="overlay-menu__button"
+        [disabled]="!nextUrl"
+        (click)="clickForward()">
+        <arrow-right></arrow-right>
+    </button>
+    <button
+        class="overlay-menu__button"
+        [disabled]="!isAnimated"
+        (click)="changeAnimationStatus()">
+        <pause></pause>
+    </button>
+    <button
+        class="overlay-menu__button"
+        [disabled]="isAnimated"
+        (click)="changeAnimationStatus()">
+        <play></play>
+    </button>
 </div>
 

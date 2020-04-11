@@ -27,14 +27,12 @@ export class OverlayMenuComponent implements OnInit {
 
   }
   public ngOnInit(): void {
-    const fullRouteList = routes;
-
-    this.updatedRoutes = fullRouteList.filter(routes => routes.data && routes.data[0] === true)
     this.isAnimated = this._animationService.isAnimated;
 
     this._router.events.pipe(
         filter((e): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe(route => this.setUpRouteButtons(route))
+    ).subscribe(route => {
+    	this.updateRouteButtons(route)})
   }
 
   public changeAnimationStatus(): void {
@@ -42,11 +40,15 @@ export class OverlayMenuComponent implements OnInit {
     this._animationService.updateGlobalAnimationState();
   }
 
-  public setUpRouteButtons(route: NavigationEnd): void {
+  public updateRouteButtons(route: NavigationEnd): void {
+	  this.nextUrl = undefined;
+	  this.backUrl = undefined;
+
+	  const fullRouteList = routes;
       this.currentUrl = route.url.replace('/', '');
+
+	  this.updatedRoutes = fullRouteList.filter(routes => routes.data && routes.data.type === 'mandala');
       const index = this.updatedRoutes.findIndex(el => el.path === this.currentUrl)
-      this.nextUrl = undefined;
-      this.backUrl = undefined;
 
       if(this.updatedRoutes[index + 1]) {
           this.nextUrl = this.updatedRoutes[(index + 1)].path;
