@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MandalaOneComponent } from './mandala-lib/mandala-one/mandala-one.component';
-import {MandalaOneModule} from './mandala-lib/mandala-one/mandala-one.module';
-
 
 export const routes: Routes = [
     {
@@ -11,6 +8,11 @@ export const routes: Routes = [
     {
         path: 'one',
         loadChildren: () => import('./mandala-lib/mandala-one/mandala-one.module').then(m => m.MandalaOneModule),
+        data: { type: 'mandala' }
+    },
+    {
+        path: 'two',
+        loadChildren: () => import('./mandala-lib/mandala-two/mandala-two.module').then(m => m.MandalaTwoModule),
         data: { type: 'mandala' }
     }
 ];
