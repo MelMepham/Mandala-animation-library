@@ -1,0 +1,35 @@
+mandala-two:host {
+    display: block;
+    border: 2px solid green;
+}
+
+.mandala-two__container {
+    width: 60%;
+    height: 60%;
+    margin: 88px auto;
+
+    @media only screen and (max-width: 1000px) {
+        width: 70%;
+        height: 70%;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-top: 20%;
+        width: 100%;
+        height: 100%;
+    }
+    @media only screen and (max-width: 420px) {
+        margin-top: 40%;
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+.mandala-two__animation-container {
+    ::ng-deep .p5Canvas {
+        width: 90% !important;
+        height: 90% !important;
+        display: block;
+        margin: auto;
+    }
+}

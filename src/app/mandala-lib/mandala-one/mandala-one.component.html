@@ -1,4 +1,3 @@
-
 <div
   class="mandala-one__container">
   <div
@@ -10,35 +9,35 @@
     class="mandala-one__button-container">
     <div>
         <button
-            (click)="changeColors('pink')"
+            (click)="changeColors('pink', 'pink', 'pink')"
             class="mandala-one__button mandala-one__button--pink">
             <app-stop-icon></app-stop-icon>
         </button>
     </div>
     <div>
         <button
-            (click)="changeColors('green')"
+            (click)="changeColors('green', 'green', 'green')"
             class="mandala-one__button mandala-one__button--green">
             <app-stop-icon></app-stop-icon>
         </button>
     </div>
     <div>
         <button
-            (click)="changeColors('blue')"
+            (click)="changeColors('blue', 'blue', 'blue')"
             class="mandala-one__button mandala-one__button--blue">
             <app-stop-icon></app-stop-icon>
         </button>
     </div>
     <div>
         <button
-            (click)="changeColors('yellow')"
+            (click)="changeColors('yellow', 'yellow', 'yellow')"
             class="mandala-one__button mandala-one__button--yellow">
             <app-stop-icon></app-stop-icon>
         </button>
     </div>
     <div>
         <button
-                (click)="revertColors()"
+                (click)="changeColors('green', 'blue', 'pink')"
                 class="mandala-one__button mandala-one__button--cancel">
             <app-cancel-icon></app-cancel-icon>
         </button>

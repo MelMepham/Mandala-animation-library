@@ -1,68 +1,68 @@
 mandala-one:host {
-  display: block;
+    display: block;
 }
 .mandala-one__button-container {
-  position: absolute;
-  top: 10px;
+    position: absolute;
+    top: 10px;
 }
 .mandala-one__button {
-  fill: tomato;
-  border: 2px solid green;
-  height: 40px;
-  width: 40px;
-  border: 0;
-  background-color: unset;
-  cursor: pointer;
+    fill: tomato;
+    border: 2px solid green;
+    height: 40px;
+    width: 40px;
+    border: 0;
+    background-color: unset;
+    cursor: pointer;
 }
 
 .mandala-one__button--pink {
-  fill: #D12E7F;
+    fill: #D12E7F;
 }
 
 .mandala-one__button--green {
-  fill: #00D18B;
+    fill: #00D18B;
 }
 
 .mandala-one__button--blue {
-  fill: #3988E4;
+    fill: #3988E4;
 }
 
 .mandala-one__button--yellow {
-   fill: #D1D13E;
+    fill: #D1D13E;
 }
 
 .mandala-one__button--cancel {
-  fill: var(--btn-primary-700);
+    fill: var(--btn-primary-700);
 }
 
 .mandala-one__container {
-  width: 60%;
-  height: 60%;
-  margin: 48px auto;
+    width: 60%;
+    height: 60%;
+    margin: 48px auto;
 
-  @media only screen and (max-width: 1000px) {
-    width: 70%;
-    height: 70%;
-  }
-  @media only screen and (max-width: 600px) {
-    margin-top: 20%;
-    width: 100%;
-    height: 100%;
-  }
-  @media only screen and (max-width: 420px) {
-    margin-top: 40%;
-    width: 100%;
-    height: 100%;
-  }
+    @media only screen and (max-width: 1000px) {
+        width: 70%;
+        height: 70%;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-top: 20%;
+        width: 100%;
+        height: 100%;
+    }
+    @media only screen and (max-width: 420px) {
+        margin-top: 40%;
+        width: 100%;
+        height: 100%;
+    }
 
 }
 
 .mandala-one__animation-container {
-  ::ng-deep .p5Canvas {
-    border-radius: 100%;
-    width: 90% !important;
-    height: 90% !important;
-    display: block;
-    margin: auto;
-  }
+    ::ng-deep .p5Canvas {
+        border-radius: 100%;
+        width: 90% !important;
+        height: 90% !important;
+        display: block;
+        margin: auto;
+    }
 }
