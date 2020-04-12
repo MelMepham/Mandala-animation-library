@@ -1,55 +1,75 @@
 import {
   Component,
   OnInit,
-  OnDestroy,
-  Input,
-  SimpleChanges
+  OnDestroy
 } from '@angular/core';
 import * as sketch from 'p5';
 import { takeUntil } from 'rxjs/operators';
 
-import { ColorsEnum } from "../styles/colors.enum";
+import { ColorsEnum } from '../styles/colors.enum';
 import { AnimationService } from 'src/services/animation.service';
-import {Subject, Observable} from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 @Component({
-  selector: 'mandala-one',
   templateUrl: './mandala-one.component.html',
   styleUrls: ['./mandala-one.component.scss']
 })
 export class MandalaOneComponent implements OnInit, OnDestroy {
 
-  private _sketch: any;
-  private _p: any;
-  private _s: any;
-  private _h: any;
+  private sketch: any;
+  private p: any;
+  private s: any;
+  private h: any;
 
   private destroyed$ = new Subject<void>();
   constructor(
-      private _animationService: AnimationService
+      private animationService: AnimationService
   ) {
-
   }
 
   public isAnimated: boolean;
 
-  @Input() primaryColor = "green";
-  @Input() secondaryColor = "blue";
-  @Input() highlightColor = "pink";
+  public primaryColor = 'green';
+  public secondaryColor = 'blue';
+  public highlightColor = 'pink';
+
+  public changeColors(color: string) {
+      this.primaryColor = color;
+      this.secondaryColor = color;
+      this.highlightColor = color;
+
+      this.getColors(ColorsEnum, this.primaryColor, this.secondaryColor, this.highlightColor);
+      if (!this.animationService.isAnimated) {
+          this.sketch.loop();
+          this.sketch.noLoop();
+      }
+  }
+
+  public revertColors() {
+    this.primaryColor = 'green';
+    this.secondaryColor = 'blue';
+    this.highlightColor = 'pink';
+
+    this.getColors(ColorsEnum, this.primaryColor, this.secondaryColor, this.highlightColor);
+    if (!this.animationService.isAnimated) {
+      this.sketch.loop();
+      this.sketch.noLoop();
+    }
+  }
 
   public ngOnInit(): void {
-    this._animationService.isAnimatedObservable$.pipe(
+    this.animationService.isAnimatedObservable$.pipe(
         takeUntil(this.destroyed$)
   )
       .subscribe(
         isAnimated => {
-          this.isAnimated = isAnimated
-          this.checkIsAnimated(isAnimated)
+          this.isAnimated = isAnimated;
+          this.checkIsAnimated(isAnimated);
         }
     );
-    this._getColors(ColorsEnum, this.primaryColor, this.secondaryColor, this.highlightColor);
-    this.createCanvas()
+    this.getColors(ColorsEnum, this.primaryColor, this.secondaryColor, this.highlightColor);
+    this.createCanvas();
   }
 
   public ngOnDestroy(): void {
@@ -58,7 +78,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
   }
 
   private createCanvas(): void {
-    this._sketch = new sketch(this.mandala);
+    this.sketch = new sketch(this.mandala);
     if (this.isAnimated) {
       return
     }
@@ -66,20 +86,20 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
   }
 
   private destroyCanvas(): void {
-    this._sketch.noCanvas();
+    this.sketch.noCanvas();
   }
 
   private checkIsAnimated(val: boolean) {
-    if (this._sketch) {
-      val ? this._sketch.loop() : this._sketch.noLoop();
+    if (this.sketch) {
+      val ? this.sketch.loop() : this.sketch.noLoop();
     }
     return;
   }
 
-  private _getColors(obj: any, primary: any, secondary: any, highlight: any) {
-    this._p = obj[primary][0];
-    this._s = obj[secondary][0];
-    this._h = obj[highlight][0];
+  private getColors(obj: any, primary: any, secondary: any, highlight: any) {
+    this.p = obj[primary][0];
+    this.s = obj[secondary][0];
+    this.h = obj[highlight][0];
   }
 
   public mandala = (p: any) => {
@@ -183,8 +203,8 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       // Outer flower shape
       p.push();
       p.translate(p.center.x, p.center.y);
-      p.fill(p.color(this._p['600']));
-      p.stroke(p.color(this._p['600']));
+      p.fill(p.color(this.p['600']));
+      p.stroke(p.color(this.p['600']));
       p.rotate(p.radians(p.frameCount * 60) / -3);
       for (let i = 0; i < 12; i++) {
         p.beginShape();
@@ -196,7 +216,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
 
       p.push();
       p.noStroke();
-      p.fill(p.color(this._p["100"]));
+      p.fill(p.color(this.p["100"]));
       p.translate(p.center.x, p.center.y);
       p.scale((p.sin(p.frameCount / 5) * 1) + .2);
       p.rotate(p.radians(p.frameCount * 60) / 3);
@@ -210,7 +230,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.noStroke();
       for (let i = 0; i < 24; i++) {
         p.beginShape();
-        p.fill(this._p["500"]);
+        p.fill(this.p["500"]);
         p.scale((p.sin(p.frameCount / 5) * 1) + .2);
         p.rotate(p.radians(p.frameCount * 60) / 3);
         p.vertex(-smallCurvedTriangleStartPoint, -smallCurvedTriangleHeight);
@@ -226,7 +246,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.noStroke();
       p.translate(p.center.x, p.center.y);
-      p.fill(this._h["100"]);
+      p.fill(this.h["100"]);
       p.scale((p.sin(p.frameCount) * 1) + .5);
       p.rotate(p.radians(p.frameCount * 40));
       for (let i = 0; i < 24; i++) {
@@ -239,7 +259,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(p.color(this._s["500"]));
+      p.fill(p.color(this.s["500"]));
       p.scale((p.sin(p.frameCount) * 1) + .2);
       p.circle(0, 0, nearlyBiggestCircle);
       p.pop();
@@ -248,7 +268,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(p.color(this._s["300"]));
+      p.fill(p.color(this.s["300"]));
       p.scale((p.sin(p.frameCount) * 1) + .2);
       p.circle(0, 0, bigCircleC);
       p.pop();
@@ -257,7 +277,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._h["200"]);
+      p.fill(this.h["200"]);
       p.rotate(p.radians(p.frameCount * 30));
       p.scale((p.sin(p.frameCount / 2) * 1.6) + .2);
       for (let i = 0; i < 12; i++) {
@@ -268,9 +288,9 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.noStroke();
       p.beginShape();
       for (let i = 0; i < 12; i++) {
-        p.fill(this._s["600"]);
+        p.fill(this.s["600"]);
         p.bezier(0, -waterDropletY1, -waterDropletX2, -waterDropletY2, waterDropletX2, -waterDropletY2, 0, -waterDropletY1);
-        p.fill(this._s["200"]);
+        p.fill(this.s["200"]);
         p.circle(0, -waterDropletCircleY, waterDropletCircleC);
         p.rotate(30);
       };
@@ -279,7 +299,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
 
       p.push();
       p.translate(p.center.x, p.center.y);
-      p.fill(this._p["200"]);
+      p.fill(this.p["200"]);
       p.noStroke();
       p.push();
       p.scale((p.sin(p.frameCount / 5) * 1.6) + .2);
@@ -309,11 +329,11 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.noStroke();
       p.rotate(p.radians(p.frameCount * -20));
       for (let i = 0; i < 12; i++) {
-        p.fill(this._p["500"]);
+        p.fill(this.p["500"]);
         p.circle(outerTripleCirclesBigX, 0, outerTripleCirclesBigC);
-        p.fill(this._p["300"]);
+        p.fill(this.p["300"]);
         p.circle(outerTripleCirclesMidSmlX, 0, outerTripleCirlcesMidC);
-        p.fill(this._p["100"]);
+        p.fill(this.p["100"]);
         p.circle(outerTripleCirclesMidSmlX, 0, outerTripleCirclesSmlC);
         p.rotate(30);
       };
@@ -323,7 +343,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._p["400"]);
+      p.fill(this.p["400"]);
       p.rotate(p.radians(p.frameCount / 4) * 50);
       for (let i = 0; i < 6; i++) {
         p.triangle(Ctrianglex1, -Ctriangley1, -Ctrianglex1, -Ctriangley1, 0, -Ctriangley2)
@@ -334,7 +354,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       // flowerA
       p.push();
       p.translate(p.center.x, p.center.y);
-      p.fill(p.color(this._s["700"]));
+      p.fill(p.color(this.s["700"]));
       p.push();
       p.noStroke();
       p.ellipse(0, 0, flowerCircle, flowerCircle);
@@ -363,16 +383,16 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.scale((p.sin(p.frameCount / 5) * 1.5) + 1);
       for (let i = 0; i < 12; i++) {
-        p.fill(this._p["400"]);
+        p.fill(this.p["400"]);
         p.circle(outerTripleCirclesBigX, 0, outerTripleCirclesBigC / 4);
         p.rotate(30);
       };
       p.pop();
       p.push();
       for (let i = 0; i < 12; i++) {
-        p.fill(this._p["500"]);
+        p.fill(this.p["500"]);
         p.circle(outerTripleCirclesMidSmlX, 0, outerTripleCirlcesMidC / 4);
-        p.fill(this._p["300"]);
+        p.fill(this.p["300"]);
         p.circle(outerTripleCirclesMidSmlX, 0, outerTripleCirclesSmlC / 4);
         p.rotate(30);
       };
@@ -383,7 +403,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._p["600"]);
+      p.fill(this.p["600"]);
       p.rotate(p.radians(p.frameCount / 4) * 50);
       for (let i = 0; i < 6; i++) {
         p.triangle(Ctrianglex1, -Ctriangley1, -Ctrianglex1, -Ctriangley1, 0, -Ctriangley2)
@@ -395,7 +415,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(p.color(this._p["200"]));
+      p.fill(p.color(this.p["200"]));
       p.ellipse(0, 0, ECircleHW, ECircleHW);
       p.pop();
 
@@ -405,9 +425,9 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.scale((p.sin(p.frameCount / 2) * 1.3) + .2);
       for (let i = 0; i < 6; i++) {
         p.noStroke();
-        p.fill(p.color(this._s["400"]));
+        p.fill(p.color(this.s["400"]));
         p.ellipse(0, -CCircleY, DCircleWH, DCircleWH);
-        p.fill(p.color(this._s["300"]));
+        p.fill(p.color(this.s["300"]));
         p.ellipse(0, -CCircleY, CCircleWH, CCircleWH);
         p.rotate(60);
       }
@@ -418,7 +438,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.translate(p.center.x, p.center.y);
       p.noStroke();
       p.push();
-      p.fill(this._p["500"]);
+      p.fill(this.p["500"]);
       p.scale(1.2);
       p.rotate(p.radians(p.frameCount * -50));
       for (let i = 0; i < 6; i++) {
@@ -428,7 +448,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.pop();
       p.push();
       p.rotate(p.radians(p.frameCount / 3) * 50);
-      p.fill(this._p["200"]);
+      p.fill(this.p["200"]);
       for (let i = 0; i < 6; i++) {
         p.ellipse(-BcircleX, 0, BcircleSize, BcircleSize);
         p.rotate(60);
@@ -440,14 +460,14 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._s["200"]);
+      p.fill(this.s["200"]);
       p.rotate(p.radians(p.frameCount / 4) * 50);
       p.scale((p.sin(p.frameCount / 1) * 1.3) + .5);
       for (let i = 0; i < 6; i++) {
         p.triangle(Atrianglex1, -Atriangley1, -Atrianglex1, -Atriangley1, 0, -Atriangley2)
         p.rotate(60);
       }
-      p.fill(this._s["400"]);
+      p.fill(this.s["400"]);
       for (let i = 0; i < 6; i++) {
         p.triangle(Atrianglex1, -Atriangley1, -Atrianglex1, -Atriangley1, 0, -Btriangley1)
         p.rotate(60);
@@ -458,7 +478,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._h["300"]);
+      p.fill(this.h["300"]);
       p.rotate(p.radians(p.frameCount / 1) * -50);
       p.scale((p.sin(p.frameCount / 2) * 1.3) + .5);
       for (let i = 0; i < 6; i++) {
@@ -471,7 +491,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.push();
       p.translate(p.center.x, p.center.y);
       p.noStroke();
-      p.fill(this._p["200"]);
+      p.fill(this.p["200"]);
       p.scale((p.sin(p.frameCount / 3) * 1.3) + .5);
       p.ellipse(0, 0, petal * 2 , petal * 2);
       p.pop();
@@ -481,7 +501,7 @@ export class MandalaOneComponent implements OnInit, OnDestroy {
       p.translate(p.center.x, p.center.y);
       p.strokeWeight(0.1);
       p.stroke(255, 255, 255, 0);
-      p.fill(p.color(this._p["600"]));
+      p.fill(p.color(this.p["600"]));
       p.scale((p.sin(p.frameCount / 4) * .5) + .5);
       p.rotate(p.radians(p.frameCount / 4) * -50);
       for (let i = 0; i < 6; i++) {

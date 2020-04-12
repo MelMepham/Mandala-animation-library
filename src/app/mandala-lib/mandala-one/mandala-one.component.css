@@ -1,10 +1,12 @@
 mandala-one:host {
   display: block;
 }
+
 .mandala-one__button-container {
   position: absolute;
   top: 10px;
 }
+
 .mandala-one__button {
   fill: tomato;
   border: 2px solid green;
@@ -28,7 +30,7 @@ mandala-one:host {
 }
 
 .mandala-one__button--yellow {
-   fill: #D1D13E;
+  fill: #D1D13E;
 }
 
 .mandala-one__button--cancel {
@@ -39,30 +41,34 @@ mandala-one:host {
   width: 60%;
   height: 60%;
   margin: 48px auto;
-
-  @media only screen and (max-width: 1000px) {
+}
+@media only screen and (max-width: 1000px) {
+  .mandala-one__container {
     width: 70%;
     height: 70%;
   }
-  @media only screen and (max-width: 600px) {
+}
+@media only screen and (max-width: 600px) {
+  .mandala-one__container {
     margin-top: 20%;
     width: 100%;
     height: 100%;
   }
-  @media only screen and (max-width: 420px) {
+}
+@media only screen and (max-width: 420px) {
+  .mandala-one__container {
     margin-top: 40%;
     width: 100%;
     height: 100%;
   }
-
 }
 
-.mandala-one__animation-container {
-  ::ng-deep .p5Canvas {
-    border-radius: 100%;
-    width: 90% !important;
-    height: 90% !important;
-    display: block;
-    margin: auto;
-  }
+.mandala-one__animation-container ::ng-deep .p5Canvas {
+  border-radius: 100%;
+  width: 90% !important;
+  height: 90% !important;
+  display: block;
+  margin: auto;
 }
+
+/*# sourceMappingURL=mandala-one.component.css.map */

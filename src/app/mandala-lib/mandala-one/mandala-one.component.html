@@ -1,3 +1,4 @@
+
 <div
   class="mandala-one__container">
   <div
@@ -5,3 +6,42 @@
     <div id="forest-mandala"></div>
   </div>
 </div>
+<div
+    class="mandala-one__button-container">
+    <div>
+        <button
+            (click)="changeColors('pink')"
+            class="mandala-one__button mandala-one__button--pink">
+            <app-stop-icon></app-stop-icon>
+        </button>
+    </div>
+    <div>
+        <button
+            (click)="changeColors('green')"
+            class="mandala-one__button mandala-one__button--green">
+            <app-stop-icon></app-stop-icon>
+        </button>
+    </div>
+    <div>
+        <button
+            (click)="changeColors('blue')"
+            class="mandala-one__button mandala-one__button--blue">
+            <app-stop-icon></app-stop-icon>
+        </button>
+    </div>
+    <div>
+        <button
+            (click)="changeColors('yellow')"
+            class="mandala-one__button mandala-one__button--yellow">
+            <app-stop-icon></app-stop-icon>
+        </button>
+    </div>
+    <div>
+        <button
+                (click)="revertColors()"
+                class="mandala-one__button mandala-one__button--cancel">
+            <app-cancel-icon></app-cancel-icon>
+        </button>
+    </div>
+</div>
+
