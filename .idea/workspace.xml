@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3d471743-4a41-4cf3-9da3-592542410c6b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mandala-lib/mandala-two/mandala-two.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,8 +79,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
-                  <caret line="34" selection-start-line="34" selection-end-line="34" />
+                <state relative-caret-position="391">
+                  <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -94,8 +88,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+                <state relative-caret-position="391">
+                  <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -340,7 +334,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29577000" />
+    <option name="totallyTimeSpent" value="29948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -726,15 +720,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="391">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/overlay-menu/overlay-menu.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        <state relative-caret-position="391">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>

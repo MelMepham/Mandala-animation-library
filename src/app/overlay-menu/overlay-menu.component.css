@@ -24,14 +24,4 @@ overlay-menu:host {
   cursor: not-allowed;
 }
 
-.overlay-menu__bottom-container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-}
-.overlay-menu__bottom-container p {
-  font-size: 10px;
-}
-
 /*# sourceMappingURL=overlay-menu.component.css.map */
