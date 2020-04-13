@@ -23,3 +23,14 @@ overlay-menu:host {
     opacity: .2;
     cursor: not-allowed;
 }
+
+.overlay-menu__bottom-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+
+    p {
+        font-size: 10px;
+    }
+}
