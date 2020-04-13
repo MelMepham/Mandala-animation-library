@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
 * {
   font-family: "Josefin Sans", sans-serif;
 }
@@ -9,7 +8,6 @@
   --btn-primary-300: #b2fcff;
   --btn-primary-500: #5edfff;
   --btn-primary-700: #3e64ff;
-
   --bg-color: pink;
 }
 
@@ -18,7 +16,9 @@
   background-color: white;
   width: 100%;
   bottom: 0;
-    p {
-        font-size: x-small;
-    }
 }
+.app-component__small-text p {
+  font-size: x-small;
+}
+
+/*# sourceMappingURL=app.component.css.map */

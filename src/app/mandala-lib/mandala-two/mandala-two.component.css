@@ -40,6 +40,7 @@ mandala-two:host {
   position: absolute;
   top: 0;
   margin-top: 15px;
+  margin-top: 15px;
 }
 
 input[type=range] {
